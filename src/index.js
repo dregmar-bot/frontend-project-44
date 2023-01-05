@@ -1,12 +1,10 @@
 import readlineSync from 'readline-sync';
 import { isEven, askYesNo } from './games/brain-even.js';
+import { handleResult, askTheExpression, takeExpression } from './games/brain-calc.js';
 
 const randomNumber = (min, max) => Math.floor(Math.random() * (max - min + min));
-const answer = (value) => {
-  const userAnswer = readlineSync.question(`Question: ${value}
+const answer = (value) => readlineSync.question(`Question: ${value}
 Your answer:`);
-  return userAnswer;
-};
 
 // Приветствие
 const sayHello = () => {
@@ -20,7 +18,7 @@ const toPlay = (game) => {
   if (game === 'brain-even') {
     askYesNo();
   } else if (game === 'brain-calc') {
-    // ask chto-to;
+    askTheExpression();
   }
   let ans = '';
   let result = true;
@@ -28,13 +26,13 @@ const toPlay = (game) => {
     if (game === 'brain-even') {
       const number = randomNumber(1, 100);
       ans = answer(number);
-      if (isEven(ans, number) === false) {
-        result = false;
-        break;
-      }
-      result = true;
+      result = isEven(ans, number);
     } else if (game === 'brain-calc') {
-      //
+      ans = (answer(takeExpression()));
+      result = handleResult(ans);
+    }
+    if (result === false) {
+      break;
     }
   }
   return result;
@@ -48,10 +46,10 @@ const sayBye = (username, gameResult) => {
 };
 
 // Запуск
-const toPlayGame = (game) => {
+const toStartGame = (game) => {
   const name = sayHello();
   const score = toPlay(game);
   sayBye(name, score);
 };
 
-export default toPlayGame;
+export default toStartGame;
