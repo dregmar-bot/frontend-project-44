@@ -2,8 +2,9 @@ import readlineSync from 'readline-sync';
 import { isEven, askIsEven } from './games/brain-even.js';
 import { makeExpression, askTheExpression, takeExpression } from './games/brain-calc.js';
 import { askGCD, takeGCD } from './games/brain-gcd.js';
+import { makeHoleyProgression, askProgression } from './games/brain-progression.js';
 
-const randomNumber = (min, max) => Math.floor(Math.random() * (max - min + min));
+const randomNumber = (min, max) => Math.floor(Math.random() * (max - min) + min);
 const answer = (value1, value2 = '') => readlineSync.question(`Question: ${value1} ${value2}
 Your answer:`);
 const sayWrong = (wrongAnswer, correctAnswer) => console.log(`'${wrongAnswer}' is wrong answer ;(. Correct answer was '${correctAnswer}'.`);
@@ -28,6 +29,8 @@ const toPlay = (game) => {
     askTheExpression();
   } else if (game === 'brain-gcd') {
     askGCD();
+  } else if (game === 'brain-progression') {
+    askProgression();
   }
   let userAnswer = '';
   let systemAnswer = '';
@@ -48,6 +51,14 @@ const toPlay = (game) => {
       const secondNum = randomNumber(1, 100);
       userAnswer = answer(firstNum, secondNum);
       systemAnswer = takeGCD(firstNum, secondNum);
+    } else if (game === 'brain-progression') {
+      const number = randomNumber(1, 100);
+      const length = randomNumber(5, 15);
+      const progressionStep = randomNumber(2, 10);
+      const progressionHole = randomNumber(1, length);
+      const container = makeHoleyProgression(number, length, progressionStep, progressionHole);
+      userAnswer = answer(container[1].join(' '));
+      systemAnswer = container[0].toString();
     }
     if (userAnswer !== systemAnswer) {
       result = false;
