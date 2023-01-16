@@ -1,6 +1,15 @@
+### About the project:
+Brain-games is a project that includes simple logic and arithmetic games. List of games with commands to run:
++ brain-even - even/odd game;
++ brain prime - a game in which the player must choose a prime or non-prime a given number;
++ brain-calc - a game in which the player must calculate a given expression;
++ brain-gcd - a game in which the player must find the greatest common divisor among given numbers;
++ brain-progression - a game in which player must find a missed number in a given progression
 ### Hexlet tests and linter status:
 [![Actions Status](https://github.com/dregmar-bot/frontend-project-44/workflows/hexlet-check/badge.svg)](https://github.com/dregmar-bot/frontend-project-44/actions)
 <a href="https://codeclimate.com/github/dregmar-bot/frontend-project-44/maintainability"><img src="https://api.codeclimate.com/v1/badges/ad10e2038d46c445ecad/maintainability" /></a>
+### Install:
+`npm install @hexlet/code.`
 ### Demo links:
 <a href="https://asciinema.org/a/opjg21oE6Cvr6qJgWGtFexkSV"><img src="https://asciinema.org/a/opjg21oE6Cvr6qJgWGtFexkSV.png" width="836"/></a>
 <a href="https://asciinema.org/a/oc32eXNuc1iynuOCJZsoOqxB9"><img src="https://asciinema.org/a/oc32eXNuc1iynuOCJZsoOqxB9.png" width="836"/></a>
