@@ -3,6 +3,7 @@ import { isEven, askIsEven } from './games/brain-even.js';
 import { makeExpression, askTheExpression, takeExpression } from './games/brain-calc.js';
 import { askGCD, takeGCD } from './games/brain-gcd.js';
 import { makeHoleyProgression, askProgression } from './games/brain-progression.js';
+import { askPrime, isPrime } from './games/brain-prime.js';
 
 const randomNumber = (min, max) => Math.floor(Math.random() * (max - min) + min);
 const answer = (value1, value2 = '') => readlineSync.question(`Question: ${value1} ${value2}
@@ -31,6 +32,8 @@ const toPlay = (game) => {
     askGCD();
   } else if (game === 'brain-progression') {
     askProgression();
+  } else if (game === 'brain-prime') {
+    askPrime();
   }
   let userAnswer = '';
   let systemAnswer = '';
@@ -59,6 +62,10 @@ const toPlay = (game) => {
       const container = makeHoleyProgression(number, length, progressionStep, progressionHole);
       userAnswer = answer(container[1].join(' '));
       systemAnswer = container[0].toString();
+    } else if (game === 'brain-prime') {
+      const number = randomNumber(1, 20);
+      userAnswer = answer(number);
+      systemAnswer = isPrime(number);
     }
     if (userAnswer !== systemAnswer) {
       result = false;
