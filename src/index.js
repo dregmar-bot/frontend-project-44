@@ -22,8 +22,8 @@ const sayHello = () => {
   console.log(`Hello, ${userName}!`);
   return userName;
 };
-// Игры
-const toPlay = (game) => {
+// Инструкция для игрока
+const sayInstruction = (game) => {
   if (game === 'brain-even') {
     askIsEven();
   } else if (game === 'brain-calc') {
@@ -35,6 +35,11 @@ const toPlay = (game) => {
   } else if (game === 'brain-prime') {
     askPrime();
   }
+};
+
+// Игры
+const toPlay = (game) => {
+  sayInstruction(game);
   let userAnswer = '';
   let systemAnswer = '';
   let result = true;
