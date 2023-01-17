@@ -9,7 +9,15 @@ Brain-games is a project that includes simple logic and arithmetic games. List o
 [![Actions Status](https://github.com/dregmar-bot/frontend-project-44/workflows/hexlet-check/badge.svg)](https://github.com/dregmar-bot/frontend-project-44/actions)
 <a href="https://codeclimate.com/github/dregmar-bot/frontend-project-44/maintainability"><img src="https://api.codeclimate.com/v1/badges/ad10e2038d46c445ecad/maintainability" /></a>
 ### Install:
-`npm install @hexlet/code.`
+`make install`
+### Compatibility
+This library is written in JavaScript and is compatible with Node.js version 14.x and above.
+### Dependencies
+
+This library requires the following npm packages:
+
+readline-sync: ^1.4.10
+
 ### Demo links:
 <a href="https://asciinema.org/a/opjg21oE6Cvr6qJgWGtFexkSV"><img src="https://asciinema.org/a/opjg21oE6Cvr6qJgWGtFexkSV.png" width="836"/></a>
 <a href="https://asciinema.org/a/R3yffjvAoCe2A7c48Rj0Vk2XV"><img src="https://asciinema.org/a/R3yffjvAoCe2A7c48Rj0Vk2XV.png" width="836"/></a>
