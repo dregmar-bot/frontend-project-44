@@ -11,7 +11,7 @@ const findAnswer = (progression) => {
   const findEndAnswer = () => arr[proLength - 1] - arr[proLength - 2];
   // eslint-disable-next-line no-restricted-syntax
   for (const item of arr) {
-    if (item === '...') {
+    if (item === '..') {
       const itemPlace = arr.indexOf(item);
       const halfOfProgression = proLength / 2;
       const diff = itemPlace <= halfOfProgression ? findEndAnswer() : findStartAnswer();
@@ -28,7 +28,7 @@ const makeHoleyProgression = () => {
   const progression = [];
   for (let i = startingNum; progression.length < progressionLength; i += step) {
     if (progression.length === hole) {
-      progression.push('...');
+      progression.push('..');
     } else {
       progression.push(i);
     }
