@@ -8,12 +8,12 @@ const receiveOperator = () => {
   const x = randomNumber(0, operators.length);
   return operators[x];
 };
-const takeExpression = () => randomNumber(1, 10) + receiveOperator() + randomNumber(1, 10);
+const takeExpression = () => `${randomNumber(1, 10)} ${receiveOperator()} ${randomNumber(1, 10)}`;
 
 const makeExpression = (str) => {
   const firstNum = Number(str[0]);
-  const secondNum = Number(str[2]);
-  const operator = str[1];
+  const secondNum = Number(str[4]);
+  const operator = str[2];
   let result;
   switch (operator) {
     case '+':
