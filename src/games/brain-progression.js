@@ -4,17 +4,18 @@ import {
 
 const askProgression = () => console.log('What number is missing in the progression?');
 const findAnswer = (progression) => {
+  const arr = progression.split(' ');
   let result = 0;
-  const proLength = progression.length;
-  const findStartAnswer = () => progression[1] - progression[0];
-  const findEndAnswer = () => progression[proLength - 1] - progression[proLength - 2];
+  const proLength = arr.length;
+  const findStartAnswer = () => arr[1] - arr[0];
+  const findEndAnswer = () => arr[proLength - 1] - arr[proLength - 2];
   // eslint-disable-next-line no-restricted-syntax
-  for (const item of progression) {
+  for (const item of arr) {
     if (item === '...') {
-      const itemPlace = progression.indexOf(item);
+      const itemPlace = arr.indexOf(item);
       const halfOfProgression = proLength / 2;
       const diff = itemPlace <= halfOfProgression ? findEndAnswer() : findStartAnswer();
-      result = progression[itemPlace - 1] + diff;
+      result = Number(arr[itemPlace - 1]) + Number(diff);
     }
   }
   return result.toString();
@@ -32,7 +33,7 @@ const makeHoleyProgression = () => {
       progression.push(i);
     }
   }
-  return progression;
+  return progression.join(' ');
 };
 
 const toPlayProgression = () => {
