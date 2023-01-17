@@ -12,7 +12,7 @@ Brain-games is a project that includes simple logic and arithmetic games. List o
 `npm install @hexlet/code.`
 ### Demo links:
 <a href="https://asciinema.org/a/opjg21oE6Cvr6qJgWGtFexkSV"><img src="https://asciinema.org/a/opjg21oE6Cvr6qJgWGtFexkSV.png" width="836"/></a>
-<a href="https://asciinema.org/a/oc32eXNuc1iynuOCJZsoOqxB9"><img src="https://asciinema.org/a/oc32eXNuc1iynuOCJZsoOqxB9.png" width="836"/></a>
+<a href="https://asciinema.org/a/R3yffjvAoCe2A7c48Rj0Vk2XV"><img src="https://asciinema.org/a/R3yffjvAoCe2A7c48Rj0Vk2XV.png" width="836"/></a>
 <a href="https://asciinema.org/a/2LWkCLAZ92JnpYIFLYXtk7PpQ"><img src="https://asciinema.org/a/2LWkCLAZ92JnpYIFLYXtk7PpQ.png" width="836"/></a>
 <a href="https://asciinema.org/a/hoI7tuG4mw6jfnwcAXh7AmWy6"><img src="https://asciinema.org/a/hoI7tuG4mw6jfnwcAXh7AmWy6.png" width="836"/></a>
 <a href="https://asciinema.org/a/nvNuFACz5pWD07OVl5HoKjnEg"><img src="https://asciinema.org/a/nvNuFACz5pWD07OVl5HoKjnEg.png" width="836"/></a>
