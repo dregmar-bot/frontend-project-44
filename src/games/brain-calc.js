@@ -1,39 +1,46 @@
-import {
-  randomNumber, sayBye, sayHello, toPlayGame,
-} from '../index.js';
+import playGame from '../index.js';
+import giveRandomNumber from '../utils.js';
 
+// Инструкция для игрока
 const askTheExpression = () => console.log('What is the result of the expression?');
+// Получение случайного оператора
 const receiveOperator = () => {
   const operators = ['+', '-', '*'];
-  const x = randomNumber(0, operators.length);
-  return operators[x];
+  const operatorIndex = giveRandomNumber(0, operators.length);
+  return operators[operatorIndex];
 };
-const takeExpression = () => `${randomNumber(1, 10)} ${receiveOperator()} ${randomNumber(1, 10)}`;
-
-const makeExpression = (str) => {
-  const firstNum = Number(str[0]);
-  const secondNum = Number(str[4]);
-  const operator = str[2];
-  let result;
-  switch (operator) {
-    case '+':
-      result = firstNum + secondNum;
-      break;
-    case '-':
-      result = firstNum - secondNum;
-      break;
-    default:
-      result = firstNum * secondNum;
-  }
-  return result.toString();
+// Формирование данных вопроса и ответа для раунда игры
+const generateDataForRound = () => {
+  const data = [];
+  const firstOperand = giveRandomNumber(1, 10);
+  const secondOperand = giveRandomNumber(1, 10);
+  const operator = receiveOperator();
+  const expression = `${firstOperand} ${operator} ${secondOperand}`;
+  data.push(expression);
+  const makeExpression = () => {
+    let result;
+    switch (operator) {
+      case '+':
+        result = firstOperand + secondOperand;
+        break;
+      case '-':
+        result = firstOperand - secondOperand;
+        break;
+      case '*':
+        result = firstOperand * secondOperand;
+        break;
+      default:
+        throw new Error(`Invalid operator: ${operator}`);
+    }
+    return result.toString();
+  };
+  const answer = makeExpression();
+  data.push(answer);
+  return data;
+};
+// Запуск игры
+const playCalc = () => {
+  playGame(askTheExpression, generateDataForRound);
 };
 
-const toPlayCalc = () => {
-  const name = sayHello();
-  askTheExpression();
-  // eslint-disable-next-line max-len
-  const result = toPlayGame(takeExpression, makeExpression);
-  sayBye(name, result);
-};
-
-export default toPlayCalc;
+export default playCalc;

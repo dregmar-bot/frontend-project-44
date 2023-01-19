@@ -1,28 +1,35 @@
-import {
-  randomNumber, sayBye, sayHello, toPlayGame,
-} from '../index.js';
+import playGame from '../index.js';
+import giveRandomNumber from '../utils.js';
 
+// Инструкция для игрока
 const askGCD = () => console.log('Find the greatest common divisor of given numbers.');
-const takeGCD = (numbers) => {
-  const arr = numbers.split(' ');
-  let x = arr[0];
-  let y = arr[1];
-  while (y !== 0 && x !== 0) {
-    if (x > y) {
-      x %= y;
-    } else {
-      y %= x;
+// Формирование данных вопроса и ответа для раунда игры
+const generateDataForRound = () => {
+  const data = [];
+  const firstRandomNumber = giveRandomNumber(1, 100);
+  const secondRandomNumber = giveRandomNumber(1, 100);
+  const exercise = `${firstRandomNumber} ${secondRandomNumber}`;
+  data.push(exercise);
+  const defineGCD = () => {
+    let firstOperand = firstRandomNumber;
+    let secondOperand = secondRandomNumber;
+    while (secondOperand !== 0 && firstOperand !== 0) {
+      if (firstOperand > secondOperand) {
+        firstOperand %= secondOperand;
+      } else {
+        secondOperand %= firstOperand;
+      }
     }
-  }
-  x += y;
-  return x.toString();
+    firstOperand += secondOperand;
+    return firstOperand.toString();
+  };
+  const answer = defineGCD();
+  data.push(answer);
+  return data;
 };
-const makeNumbers = () => `${randomNumber(1, 100)} ${randomNumber(1, 100)}`;
 
-const toPlayGCD = () => {
-  const username = sayHello();
-  askGCD();
-  const result = toPlayGame(makeNumbers, takeGCD);
-  sayBye(username, result);
+const playGCD = () => {
+  playGame(askGCD, generateDataForRound);
 };
-export default toPlayGCD;
+
+export default playGCD;

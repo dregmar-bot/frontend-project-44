@@ -1,30 +1,33 @@
-import {
-  randomNumber, sayBye, sayHello, toPlayGame,
-} from '../index.js';
+import playGame from '../index.js';
+import giveRandomNumber from '../utils.js';
 
+// Инструкция для пользователя
 const askProgression = () => console.log('What number is missing in the progression?');
-const findAnswer = (progression) => {
-  const arr = progression.split(' ');
+// Поиск пропущенного числа в прогрессии
+const findMissedNumInProgression = (progression) => {
   let result = 0;
-  const proLength = arr.length;
-  const findStartAnswer = () => arr[1] - arr[0];
-  const findEndAnswer = () => arr[proLength - 1] - arr[proLength - 2];
+  const proLength = progression.length;
+  const findStartAnswer = () => progression[1] - progression[0];
+  const findEndAnswer = () => progression[proLength - 1] - progression[proLength - 2];
   // eslint-disable-next-line no-restricted-syntax
-  for (const item of arr) {
+  for (const item of progression) {
     if (item === '..') {
-      const itemPlace = arr.indexOf(item);
+      const itemPlace = progression.indexOf(item);
       const halfOfProgression = proLength / 2;
       const diff = itemPlace <= halfOfProgression ? findEndAnswer() : findStartAnswer();
-      result = Number(arr[itemPlace - 1]) + Number(diff);
+      result = Number(progression[itemPlace - 1]) + Number(diff);
     }
   }
   return result.toString();
 };
-const makeHoleyProgression = () => {
-  const progressionLength = randomNumber(5, 15);
-  const hole = randomNumber(1, progressionLength);
-  const step = randomNumber(2, 10);
-  const startingNum = randomNumber(1, 100);
+
+// Формирование данных вопроса и ответа для раунда игры
+const generateDataForRound = () => {
+  const data = [];
+  const progressionLength = giveRandomNumber(5, 16);
+  const hole = giveRandomNumber(1, progressionLength);
+  const step = giveRandomNumber(2, 10);
+  const startingNum = giveRandomNumber(1, 100);
   const progression = [];
   for (let i = startingNum; progression.length < progressionLength; i += step) {
     if (progression.length === hole) {
@@ -33,14 +36,15 @@ const makeHoleyProgression = () => {
       progression.push(i);
     }
   }
-  return progression.join(' ');
+  const prepareProgression = progression.join(' ');
+  data.push(prepareProgression);
+  const answer = findMissedNumInProgression(progression);
+  data.push(answer);
+  return data;
 };
 
-const toPlayProgression = () => {
-  const username = sayHello();
-  askProgression();
-  const result = toPlayGame(makeHoleyProgression, findAnswer);
-  sayBye(username, result);
+const playProgression = () => {
+  playGame(askProgression, generateDataForRound);
 };
 
-export default toPlayProgression;
+export default playProgression;

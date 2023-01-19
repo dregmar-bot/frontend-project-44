@@ -1,17 +1,24 @@
-import {
-  randomNumber, sayBye, sayHello, toPlayGame,
-} from '../index.js';
+import playGame from '../index.js';
+import giveRandomNumber from '../utils.js';
 
+// Инструкция для игрока
 const askIsEven = () => {
   console.log('Answer "yes" if the number is even, otherwise answer "no".');
 };
+// Проверка числа на четность
 const isEven = (number) => (number % 2 === 0 ? 'yes' : 'no');
-
-const toPlayEven = () => {
-  const name = sayHello();
-  askIsEven();
-  const result = toPlayGame(randomNumber.bind(null, 1, 100), isEven);
-  sayBye(name, result);
+// Формирование данных вопроса и ответа для раунда игры
+const generateDataForRound = () => {
+  const data = [];
+  const randomNumber = giveRandomNumber(1, 100);
+  data.push(randomNumber);
+  const answer = isEven(randomNumber);
+  data.push(answer);
+  return data;
 };
 
-export default toPlayEven;
+const playEven = () => {
+  playGame(askIsEven, generateDataForRound);
+};
+
+export default playEven;
