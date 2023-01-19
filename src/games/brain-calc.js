@@ -9,6 +9,28 @@ const receiveOperator = () => {
   const operatorIndex = giveRandomNumber(0, operators.length);
   return operators[operatorIndex];
 };
+// Вычисление выражения
+const makeExpression = (firstNum, secondNum, op) => {
+  const firstOperand = firstNum;
+  const secondOperand = secondNum;
+  const operator = op;
+  let result;
+  switch (operator) {
+    case '+':
+      result = firstOperand + secondOperand;
+      break;
+    case '-':
+      result = firstOperand - secondOperand;
+      break;
+    case '*':
+      result = firstOperand * secondOperand;
+      break;
+    default:
+      throw new Error(`Invalid operator: ${operator}`);
+  }
+  return result.toString();
+};
+
 // Формирование данных вопроса и ответа для раунда игры
 const generateDataForRound = () => {
   const data = [];
@@ -17,24 +39,7 @@ const generateDataForRound = () => {
   const operator = receiveOperator();
   const expression = `${firstOperand} ${operator} ${secondOperand}`;
   data.push(expression);
-  const makeExpression = () => {
-    let result;
-    switch (operator) {
-      case '+':
-        result = firstOperand + secondOperand;
-        break;
-      case '-':
-        result = firstOperand - secondOperand;
-        break;
-      case '*':
-        result = firstOperand * secondOperand;
-        break;
-      default:
-        throw new Error(`Invalid operator: ${operator}`);
-    }
-    return result.toString();
-  };
-  const answer = makeExpression();
+  const answer = makeExpression(firstOperand, secondOperand, operator);
   data.push(answer);
   return data;
 };
