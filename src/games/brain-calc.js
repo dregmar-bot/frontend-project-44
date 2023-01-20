@@ -1,19 +1,16 @@
 import playGame from '../index.js';
-import giveRandomNumber from '../utils.js';
+import getRandomNumber from '../utils.js';
 
 // Инструкция для игрока
-const askTheExpression = () => console.log('What is the result of the expression?');
+const askExpression = 'What is the result of the expression?';
 // Получение случайного оператора
 const receiveOperator = () => {
   const operators = ['+', '-', '*'];
-  const operatorIndex = giveRandomNumber(0, operators.length);
+  const operatorIndex = getRandomNumber(0, operators.length - 1);
   return operators[operatorIndex];
 };
 // Вычисление выражения
-const makeExpression = (firstNum, secondNum, op) => {
-  const firstOperand = firstNum;
-  const secondOperand = secondNum;
-  const operator = op;
+const calculationExpression = (firstOperand, secondOperand, operator) => {
   let result;
   switch (operator) {
     case '+':
@@ -33,19 +30,16 @@ const makeExpression = (firstNum, secondNum, op) => {
 
 // Формирование данных вопроса и ответа для раунда игры
 const generateDataForRound = () => {
-  const data = [];
-  const firstOperand = giveRandomNumber(1, 10);
-  const secondOperand = giveRandomNumber(1, 10);
+  const firstOperand = getRandomNumber(1, 9);
+  const secondOperand = getRandomNumber(1, 9);
   const operator = receiveOperator();
-  const expression = `${firstOperand} ${operator} ${secondOperand}`;
-  data.push(expression);
-  const answer = makeExpression(firstOperand, secondOperand, operator);
-  data.push(answer);
-  return data;
+  const exercise = `${firstOperand} ${operator} ${secondOperand}`;
+  const answer = calculationExpression(firstOperand, secondOperand, operator);
+  return [exercise, answer];
 };
 // Запуск игры
-const playCalc = () => {
-  playGame(askTheExpression, generateDataForRound);
+const playGameCalc = () => {
+  playGame(askExpression, generateDataForRound);
 };
 
-export default playCalc;
+export default playGameCalc;

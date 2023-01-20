@@ -1,8 +1,8 @@
 import playGame from '../index.js';
-import giveRandomNumber from '../utils.js';
+import getRandomNumber from '../utils.js';
 
 // Инструкция для пользователя
-const askPrime = () => console.log('Answer "yes" if given number is prime. Otherwise answer "no".');
+const askPrime = 'Answer "yes" if given number is prime. Otherwise answer "no".';
 // Проверка, простое ли число
 const isPrime = (num) => {
   if (num < 2) return 'no';
@@ -15,17 +15,14 @@ const isPrime = (num) => {
 };
 // Формирование данных вопроса и ответа для раунда игры
 const generateDataForRound = () => {
-  const data = [];
-  const randomNumber = giveRandomNumber(1, 20);
-  data.push(randomNumber);
-  const answer = isPrime(randomNumber);
-  data.push(answer);
-  return data;
+  const exercise = getRandomNumber(1, 20);
+  const answer = isPrime(exercise);
+  return [exercise, answer];
 };
 
 // Запуск игры
-const playPrime = () => {
+const playGamePrime = () => {
   playGame(askPrime, generateDataForRound);
 };
 
-export default playPrime;
+export default playGamePrime;

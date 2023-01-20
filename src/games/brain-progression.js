@@ -1,8 +1,8 @@
 import playGame from '../index.js';
-import giveRandomNumber from '../utils.js';
+import getRandomNumber from '../utils.js';
 
 // Инструкция для пользователя
-const askProgression = () => console.log('What number is missing in the progression?');
+const askProgression = 'What number is missing in the progression?';
 // Поиск пропущенного числа в прогрессии
 const findMissedNumInProgression = (progression) => {
   let result = 0;
@@ -23,11 +23,10 @@ const findMissedNumInProgression = (progression) => {
 
 // Формирование данных вопроса и ответа для раунда игры
 const generateDataForRound = () => {
-  const data = [];
-  const progressionLength = giveRandomNumber(5, 16);
-  const hole = giveRandomNumber(1, progressionLength);
-  const step = giveRandomNumber(2, 10);
-  const startingNum = giveRandomNumber(1, 100);
+  const progressionLength = getRandomNumber(5, 15);
+  const hole = getRandomNumber(1, progressionLength - 1);
+  const step = getRandomNumber(2, 9);
+  const startingNum = getRandomNumber(1, 99);
   const progression = [];
   for (let i = startingNum; progression.length < progressionLength; i += step) {
     if (progression.length === hole) {
@@ -36,15 +35,13 @@ const generateDataForRound = () => {
       progression.push(i);
     }
   }
-  const prepareProgression = progression.join(' ');
-  data.push(prepareProgression);
+  const exercise = progression.join(' ');
   const answer = findMissedNumInProgression(progression);
-  data.push(answer);
-  return data;
+  return [exercise, answer];
 };
 
-const playProgression = () => {
+const playGameProgression = () => {
   playGame(askProgression, generateDataForRound);
 };
 
-export default playProgression;
+export default playGameProgression;

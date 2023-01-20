@@ -1,15 +1,13 @@
 import playGame from '../index.js';
-import giveRandomNumber from '../utils.js';
+import getRandomNumber from '../utils.js';
 
 // Инструкция для игрока
-const askGCD = () => console.log('Find the greatest common divisor of given numbers.');
+const askGCD = 'Find the greatest common divisor of given numbers.';
 // Формирование данных вопроса и ответа для раунда игры
 const generateDataForRound = () => {
-  const data = [];
-  const firstRandomNumber = giveRandomNumber(1, 100);
-  const secondRandomNumber = giveRandomNumber(1, 100);
+  const firstRandomNumber = getRandomNumber(1, 99);
+  const secondRandomNumber = getRandomNumber(1, 99);
   const exercise = `${firstRandomNumber} ${secondRandomNumber}`;
-  data.push(exercise);
   const defineGCD = () => {
     let firstOperand = firstRandomNumber;
     let secondOperand = secondRandomNumber;
@@ -24,12 +22,11 @@ const generateDataForRound = () => {
     return firstOperand.toString();
   };
   const answer = defineGCD();
-  data.push(answer);
-  return data;
+  return [exercise, answer];
 };
 
-const playGCD = () => {
+const playGameGCD = () => {
   playGame(askGCD, generateDataForRound);
 };
 
-export default playGCD;
+export default playGameGCD;

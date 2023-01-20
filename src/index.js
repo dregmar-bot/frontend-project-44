@@ -1,18 +1,5 @@
 import readlineSync from 'readline-sync';
 
-// Приветствие
-const sayHello = () => {
-  console.log('Welcome to the Brain Games!');
-  const userName = readlineSync.question('May I have your name? ');
-  console.log(`Hello, ${userName}!`);
-  return userName;
-};
-// Прощание
-const sayBye = (username, gameResult) => {
-  const isWin = `Congratulations, ${username}!`;
-  const isLose = `Let's try again, ${username}!`;
-  return gameResult === true ? console.log(isWin) : console.log(isLose);
-};
 // Вопрос
 const askQuestion = (quest) => console.log(`Question: ${quest}`);
 // Получение ответа игрока
@@ -24,8 +11,10 @@ const sayWrong = (wrongAnswer, correctAnswer) => console.log(`'${wrongAnswer}' i
 
 // Игра
 const playGame = (instruction, roundData) => {
-  const username = sayHello();
-  instruction();
+  console.log('Welcome to the Brain Games!');
+  const username = readlineSync.question('May I have your name? ');
+  console.log(`Hello, ${username}!`);
+  console.log(instruction);
   const countOfRounds = 3;
   let result = true;
   let userAnswer = '';
@@ -42,7 +31,10 @@ const playGame = (instruction, roundData) => {
     }
     sayCorrect();
   }
-  sayBye(username, result);
+  const isWin = `Congratulations, ${username}!`;
+  const isLose = `Let's try again, ${username}!`;
+  // eslint-disable-next-line no-unused-expressions
+  result === true ? console.log(isWin) : console.log(isLose);
 };
 
 export default playGame;
